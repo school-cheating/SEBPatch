@@ -193,7 +193,7 @@ namespace SafeExamBrowser.Configuration.ConfigurationData.DataMapping
 			//{
 			//	settings.Browser.MainWindow.AllowAddressBar = allow;
 			//}
-			settings.Browser.MainWindow.AllowAddressBar = true;
+			settings.Browser.MainWindow.AllowAddressBar = false;
 		}
 
 		private void MapAllowAddressBarAdditionalWindow(AppSettings settings, object value)
@@ -202,7 +202,7 @@ namespace SafeExamBrowser.Configuration.ConfigurationData.DataMapping
 			//{
 			//	settings.Browser.AdditionalWindow.AllowAddressBar = allow;
 			//}
-			settings.Browser.AdditionalWindow.AllowAddressBar = true;
+			settings.Browser.AdditionalWindow.AllowAddressBar = false;
 		}
 
 		private void MapAllowConfigurationDownloads(AppSettings settings, object value)
