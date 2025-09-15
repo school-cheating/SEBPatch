@@ -35,25 +35,26 @@ namespace patch_seb
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			AddLog("Safe Exam Browser Patch v" + Application.ProductVersion);
-			AddLog("For Safe Exam Browser version " + SupportedSEB);
+			AddLog("Safe Exam Browser Patch v" + Application.ProductVersion + " (Safe Exam Browser v" + SupportedSEB + ")");
+			//AddLog("For Safe Exam Browser version " + SupportedSEB);
+			AddLog("");
 			if (Environment.Is64BitOperatingSystem)
 			{
-				AddLog("Detected x64 operating system.");
+				AddLog("[INFO] Detected x64 operating system.");
 			}
 			else
 			{
-				AddLog("Detected x86 operating system.");
+				AddLog("[INFO] Detected x86 operating system.");
 			}
 
 			if (Environment.OSVersion.Version.Major != 10)
 			{
-				AddLog("Supported Windows version not found.");
+				AddLog("[ERROR] Supported Windows version not found.");
 				button1.Enabled = false;
 			}
 			else if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\SafeExamBrowser\Application\SafeExamBrowser.exe"))
 			{
-				AddLog("Safe Exam Browser not found.");
+				AddLog("[ERROR] Safe Exam Browser not found.");
 				button1.Enabled = false;
 			}
 			else
@@ -62,7 +63,7 @@ namespace patch_seb
 				FileVersionInfo SEBDLLVersion = FileVersionInfo.GetVersionInfo(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\SafeExamBrowser\Application\SafeExamBrowser.Configuration.dll");
 				if (SEBVersion.FileVersion != SupportedSEB)
 				{
-					AddLog("Found unsupported Safe Exam Browser version.");
+					AddLog("[ERROR] Found unsupported Safe Exam Browser version.");
 					button1.Enabled = false;
 				}
 				else if (SEBVersion.ProductVersion == SupportedSEB || SEBDLLVersion.ProductVersion == "1.0.0.0") // Somehow the patched version string differs from the official version string.
@@ -72,11 +73,13 @@ namespace patch_seb
 					isBackup = false;
 					alreadyPatched = true;
 					button1.Text = "PATCH AGAIN/UPDATE";
-					AddLog("Found an already patched Safe Exam Browser.");
+					AddLog("[WARNING] Found an already patched Safe Exam Browser.");
+					AddLog("READY TO UPDATE PATCH");
 				}
 				else
 				{
-					AddLog("Supported Safe Exam Browser version found.");
+					AddLog("[INFO] Supported Safe Exam Browser version found.");
+					AddLog("READY TO PATCH");
 				}
 			}
 		}
@@ -138,7 +141,7 @@ namespace patch_seb
 				}
 				catch (Exception ex)
 				{
-					AddLog(ex.Message);
+					AddLog("[ERROR] " + ex.Message);
 				}
 			}
 			try
@@ -167,12 +170,12 @@ namespace patch_seb
 					File.WriteAllBytes(SEBPath + @"SafeExamBrowser.UserInterface.Desktop.dll", Resources.SafeExamBrowser_UserInterface_Desktop1);
 					File.WriteAllBytes(SEBPath + @"SafeExamBrowser.UserInterface.Mobile.dll", Resources.SafeExamBrowser_UserInterface_Mobile1);
 				}
-				AddLog("Patching done.");
+				AddLog("PATCHING DONE");
 				button1.Text = "PATCH DONE";
 			}
 			catch (Exception ex)
 			{
-				AddLog(ex.Message);
+				AddLog("[ERROR] " + ex.Message);
 			}
 		}
 

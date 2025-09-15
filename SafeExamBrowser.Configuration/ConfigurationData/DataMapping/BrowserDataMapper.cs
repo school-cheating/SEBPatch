@@ -189,20 +189,20 @@ namespace SafeExamBrowser.Configuration.ConfigurationData.DataMapping
 
 		private void MapAllowAddressBar(AppSettings settings, object value)
 		{
-			//if (value is bool allow)
-			//{
-			//	settings.Browser.MainWindow.AllowAddressBar = allow;
-			//}
-			settings.Browser.MainWindow.AllowAddressBar = true;
+			if (value is bool allow)
+			{
+				settings.Browser.MainWindow.AllowAddressBar = allow;
+			}
+			//settings.Browser.MainWindow.AllowAddressBar = false;
 		}
 
 		private void MapAllowAddressBarAdditionalWindow(AppSettings settings, object value)
 		{
-			//if (value is bool allow)
-			//{
-			//	settings.Browser.AdditionalWindow.AllowAddressBar = allow;
-			//}
-			settings.Browser.AdditionalWindow.AllowAddressBar = true;
+			if (value is bool allow)
+			{
+				settings.Browser.AdditionalWindow.AllowAddressBar = allow;
+			}
+			//settings.Browser.AdditionalWindow.AllowAddressBar = false;
 		}
 
 		private void MapAllowConfigurationDownloads(AppSettings settings, object value)
@@ -635,38 +635,39 @@ namespace SafeExamBrowser.Configuration.ConfigurationData.DataMapping
 		{
 			//const int ALLOW = 1;
 
-			//if (value is IList<object> ruleDataList)
-			//{
-			//	foreach (var item in ruleDataList)
-			//	{
-			//		if (item is IDictionary<string, object> ruleData)
-			//		{
-			//			var isActive = ruleData.TryGetValue(Keys.Browser.Filter.RuleIsActive, out var v) && v is bool active && active;
+			if (value is IList<object> ruleDataList)
+			{
+				foreach (var item in ruleDataList)
+				{
+					if (item is IDictionary<string, object> ruleData)
+					{
+						var isActive = ruleData.TryGetValue(Keys.Browser.Filter.RuleIsActive, out var v) && v is bool active && active;
 
-			//			if (isActive)
-			//			{
-			//				var rule = new FilterRuleSettings();
+						if (isActive)
+						{
+							var rule = new FilterRuleSettings();
 
-			//				if (ruleData.TryGetValue(Keys.Browser.Filter.RuleExpression, out v) && v is string expression)
-			//				{
-			//					rule.Expression = expression;
-			//				}
+							if (ruleData.TryGetValue(Keys.Browser.Filter.RuleExpression, out v) && v is string expression)
+							{
+								rule.Expression = expression;
+							}
 
-			//				if (ruleData.TryGetValue(Keys.Browser.Filter.RuleAction, out v) && v is int action)
-			//				{
-			//					rule.Result = action == ALLOW ? FilterResult.Allow : FilterResult.Block;
-			//				}
+							if (ruleData.TryGetValue(Keys.Browser.Filter.RuleAction, out v) && v is int action)
+							{
+								//rule.Result = action == ALLOW ? FilterResult.Allow : FilterResult.Block;
+								rule.Result = FilterResult.Allow;
+							}
 
-			//				if (ruleData.TryGetValue(Keys.Browser.Filter.RuleExpressionIsRegex, out v) && v is bool regex)
-			//				{
-			//					rule.Type = regex ? FilterRuleType.Regex : FilterRuleType.Simplified;
-			//				}
+							if (ruleData.TryGetValue(Keys.Browser.Filter.RuleExpressionIsRegex, out v) && v is bool regex)
+							{
+								rule.Type = regex ? FilterRuleType.Regex : FilterRuleType.Simplified;
+							}
 
-			//				settings.Browser.Filter.Rules.Add(rule);
-			//			}
-			//		}
-			//	}
-			//}
+							settings.Browser.Filter.Rules.Add(rule);
+						}
+					}
+				}
+			}
 		}
 
 		private void MapProxySettings(AppSettings settings, object value)

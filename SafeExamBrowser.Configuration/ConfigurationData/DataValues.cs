@@ -153,7 +153,7 @@ namespace SafeExamBrowser.Configuration.ConfigurationData
 			//settings.Applications.Blacklist.Add(new BlacklistApplication { ExecutableName = "webexmta.exe", OriginalName = "webexmta.exe" });
 			//settings.Applications.Blacklist.Add(new BlacklistApplication { ExecutableName = "Zoom.exe", OriginalName = "Zoom.exe" });
 
-			settings.Browser.AdditionalWindow.AllowAddressBar = true;
+			settings.Browser.AdditionalWindow.AllowAddressBar = false;
 			settings.Browser.AdditionalWindow.AllowBackwardNavigation = true;
 			settings.Browser.AdditionalWindow.AllowDeveloperConsole = true;
 			settings.Browser.AdditionalWindow.AllowForwardNavigation = true;
@@ -179,7 +179,7 @@ namespace SafeExamBrowser.Configuration.ConfigurationData
 			settings.Browser.DeleteCookiesOnShutdown = true;
 			settings.Browser.DeleteCookiesOnStartup = true;
 			settings.Browser.EnableBrowser = true;
-			settings.Browser.MainWindow.AllowAddressBar = true;
+			settings.Browser.MainWindow.AllowAddressBar = false;
 			settings.Browser.MainWindow.AllowBackwardNavigation = true;
 			settings.Browser.MainWindow.AllowDeveloperConsole = true;
 			settings.Browser.MainWindow.AllowForwardNavigation = true;
